@@ -27,14 +27,14 @@ public class ComplexMatrix{
         return result;
     }
      public ComplexMatrix multiply(ComplexMatrix other) {
-         if (this.rows != other.cols) {
+         if (this.cols != other.rows) {
              System.out.println("Ошибка:строки должны совпадать со столбцами");
              return null;
          }
 
-         ComplexMatrix result = new ComplexMatrix(rows, cols);
+         ComplexMatrix result = new ComplexMatrix(this.rows, other.cols);
          for (int i = 0; i<rows;i++) {
-             for (int j = 0; j < cols; j++) {
+             for (int j = 0; j < other.cols; j++) {
                  Complex sum = new Complex(0,0);
                  for(int k = 0;k<this.cols;k++){
                      Complex obj = this.data[i][k].multiply(other.data[k][j]);
@@ -47,7 +47,7 @@ public class ComplexMatrix{
          return result;
      }
      public ComplexMatrix transpose(){
-        ComplexMatrix result = new ComplexMatrix(rows, cols);
+        ComplexMatrix result = new ComplexMatrix(this.cols,this.rows);
         for( int i=0;i<rows;i++){
             for(int j=0;j<cols;j++){
                 result.data[j][i]=this.data[i][j];
